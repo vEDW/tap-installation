@@ -46,7 +46,7 @@ export $DOCKERHUB_EMAIL=<Dockerhub email-address linked to the username>
 #
 # Parameters for TAP 1.4 are configured
 #
-export TAP_VERSION=1.5.0
+export TAP_VERSION=1.4.9
 
 # Tanzu CLI TAR file - you have to download this file from https://network.tanzu.vmware.com/
 # 1.3.x: tanzu-framework-darwin-amd64.tar
