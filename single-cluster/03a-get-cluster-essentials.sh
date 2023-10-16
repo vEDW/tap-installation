@@ -27,12 +27,16 @@ echo " ClusterEssentialsVersion : ${ClusterEssentialsVersion}"
 ClusterEssentialsSHA=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' tanzu_versions.json )
 echo "ClusterEssentialsSHA : ${ClusterEssentialsSHA}"
 
-echo "start imgpkg copy"
-IMGPKG_REGISTRY_HOSTNAME=registry.tanzu.vmware.com \
-IMGPKG_REGISTRY_USERNAME=${TANZU_NET_USER} \
-IMGPKG_REGISTRY_PASSWORD=${TANZU_NET_PASSWORD} \
-imgpkg copy \
-  -b registry.tanzu.vmware.com/tanzu-cluster-essentials/${ClusterEssentialsSHA} \
-  --to-tar cluster-essentials-bundle-${ClusterEssentialsVersion}.tar \
-  --include-non-distributable-layers
-
+if [[ "${ClusterEssentialsSHA}" != "" ]] || [[ "${ClusterEssentialsSHA}" != "" ]];
+then
+  echo "start imgpkg copy"
+  IMGPKG_REGISTRY_HOSTNAME=registry.tanzu.vmware.com \
+  IMGPKG_REGISTRY_USERNAME=${TANZU_NET_USER} \
+  IMGPKG_REGISTRY_PASSWORD=${TANZU_NET_PASSWORD} \
+  imgpkg copy \
+    -b registry.tanzu.vmware.com/tanzu-cluster-essentials/${ClusterEssentialsSHA} \
+    --to-tar cluster-essentials-bundle-${ClusterEssentialsVersion}.tar \
+    --include-non-distributable-layers
+else 
+  echo "one or more versions variable is empty"
+fi
