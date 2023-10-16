@@ -14,7 +14,10 @@
 
 source 00-set-environment-variables.sh  
 
-mkdir $HOME/tanzu-cluster-essentials
+if [[ ! -e $HOME/tanzu-cluster-essentials ]]; then
+  mkdir $HOME/tanzu-cluster-essentials
+fi
+
 cd $HOME/tanzu-cluster-essentials
 
 ClusterEssentialsVersion=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"' )
