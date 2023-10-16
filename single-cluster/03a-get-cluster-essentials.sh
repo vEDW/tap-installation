@@ -21,10 +21,10 @@ fi
 
 cd $HOME/tanzu-cluster-essentials
 
-ClusterEssentialsVersion=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"' tanzu_versions.json )
+ClusterEssentialsVersion=$(cat ./tanzu_versions.json | jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"')
 echo " ClusterEssentialsVersion : ${ClusterEssentialsVersion}"
 
-ClusterEssentialsSHA=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' tanzu_versions.json )
+ClusterEssentialsSHA=$(cat ./tanzu_versions.json |  jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"')
 echo "ClusterEssentialsSHA : ${ClusterEssentialsSHA}"
 
 if [[ "${ClusterEssentialsSHA}" != "" ]] || [[ "${ClusterEssentialsSHA}" != "" ]];
