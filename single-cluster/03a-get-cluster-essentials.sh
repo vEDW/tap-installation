@@ -19,16 +19,15 @@ if [[ ! -e $HOME/tanzu-cluster-essentials ]]; then
   mkdir $HOME/tanzu-cluster-essentials
 fi
 
-cd $HOME/tanzu-cluster-essentials
-
-ClusterEssentialsVersion=$(cat ./tanzu_versions.json | jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"')
+ClusterEssentialsVersion=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"' tanzu_versions.json)
 echo " ClusterEssentialsVersion : ${ClusterEssentialsVersion}"
 
-ClusterEssentialsSHA=$(cat ./tanzu_versions.json |  jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"')
+ClusterEssentialsSHA=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' tanzu_versions.json)
 echo "ClusterEssentialsSHA : ${ClusterEssentialsSHA}"
 
 if [[ "${ClusterEssentialsSHA}" != "" ]] || [[ "${ClusterEssentialsSHA}" != "" ]];
 then
+  cd $HOME/tanzu-cluster-essentials
   echo "start imgpkg copy"
   IMGPKG_REGISTRY_HOSTNAME=registry.tanzu.vmware.com \
   IMGPKG_REGISTRY_USERNAME=${TANZU_NET_USER} \
