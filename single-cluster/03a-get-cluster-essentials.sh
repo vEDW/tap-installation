@@ -18,8 +18,12 @@ mkdir $HOME/tanzu-cluster-essentials
 cd $HOME/tanzu-cluster-essentials
 
 ClusterEssentialsVersion=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"' )
-ClusterEssentialsSHA=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' )
+echo " ClusterEssentialsVersion : ${ClusterEssentialsVersion}"
 
+ClusterEssentialsSHA=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' )
+echo "ClusterEssentialsSHA : ${ClusterEssentialsSHA}"
+
+echo "start imgpkg copy"
 IMGPKG_REGISTRY_HOSTNAME=registry.tanzu.vmware.com \
 IMGPKG_REGISTRY_USERNAME=${TANZU_NET_USER} \
 IMGPKG_REGISTRY_PASSWORD=${TANZU_NET_PASSWORD} \
