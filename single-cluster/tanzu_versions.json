@@ -1,0 +1,23 @@
+{
+    "tap-versions": [
+        {
+            "tap-version": "1.4.9",
+            "cluster-essentials-sha": "cluster-essentials-bundle@sha256:0378d8592f368b28495153871c497143035747b22f398642220eb0cae596b09d",
+            "cluster-essentials-bundle": "1.4.5",
+            "tanzu-cli": "1.0.0"
+        },
+        {
+            "tap-version": "1.4.10",
+            "cluster-essentials-sha": "cluster-essentials-bundle@sha256:0378d8592f368b28495153871c497143035747b22f398642220eb0cae596b09d",
+            "cluster-essentials-bundle": "1.4.5",
+            "tanzu-cli": "1.0.0"
+        },
+        {
+            "tap-version": "1.6.2",
+            "cluster-essentials-sha": "cluster-essentials-bundle@sha256:a735783e7e950136668f2df7c8cd1ba155f365e0cd6bea4e3cfb8c2a90c26b47",
+            "cluster-essentials-bundle": "1.6.2",
+            "tanzu-cli": "1.0.0"
+        }
+
+    ]
+}

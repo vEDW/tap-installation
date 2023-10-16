@@ -12,11 +12,19 @@
 # - Change download file to tanzu-cluster-essentials-linux-amd64-1.3.0.tgz
 # 
 
+source 00-set-environment-variables.sh  
+
 mkdir $HOME/tanzu-cluster-essentials
-tar -xvf $TANZU_CLUSTER_ESSENTIALS_FILE -C $HOME/tanzu-cluster-essentials
-export INSTALL_BUNDLE=$TANZU_CLUSTER_ESSENTIALS_INSTALL_BUNDLE
-export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
-export INSTALL_REGISTRY_USERNAME=$TANZU_NET_USER
-export INSTALL_REGISTRY_PASSWORD=$TANZU_NET_PASSWORD
 cd $HOME/tanzu-cluster-essentials
-./install.sh --yes
+
+ClusterEssentialsVersion=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"' )
+ClusterEssentialsSHA=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' )
+
+IMGPKG_REGISTRY_HOSTNAME=registry.tanzu.vmware.com \
+IMGPKG_REGISTRY_USERNAME=${TANZU_NET_USER} \
+IMGPKG_REGISTRY_PASSWORD=${TANZU_NET_PASSWORD} \
+imgpkg copy \
+  -b registry.tanzu.vmware.com/tanzu-cluster-essentials/${ClusterEssentialsSHA} \
+  --to-tar cluster-essentials-bundle-${ClusterEssentialsVersion}.tar \
+  --include-non-distributable-layers
+
