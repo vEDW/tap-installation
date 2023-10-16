@@ -1,3 +1,4 @@
+#!/bin/bash
 # 03-deploy-cluster-essentials.sh
 #
 # This script is only required for non-TKGm clusters (AKS, EKS, GKE, etc.). For vSphere /w Tanzu v7 it's also required to 
@@ -20,10 +21,10 @@ fi
 
 cd $HOME/tanzu-cluster-essentials
 
-ClusterEssentialsVersion=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"' )
+ClusterEssentialsVersion=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"' tanzu_versions.json )
 echo " ClusterEssentialsVersion : ${ClusterEssentialsVersion}"
 
-ClusterEssentialsSHA=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' )
+ClusterEssentialsSHA=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' tanzu_versions.json )
 echo "ClusterEssentialsSHA : ${ClusterEssentialsSHA}"
 
 echo "start imgpkg copy"
