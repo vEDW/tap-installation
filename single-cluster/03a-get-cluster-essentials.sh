@@ -21,10 +21,10 @@ fi
 
 cd $HOME/tanzu-cluster-essentials
 
-ClusterEssentialsVersion=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"' tanzu_versions.json )
+ClusterEssentialsVersion=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"' tanzu_versions.json )
 echo " ClusterEssentialsVersion : ${ClusterEssentialsVersion}"
 
-ClusterEssentialsSHA=$(jq -r '."tap-versions" | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' tanzu_versions.json )
+ClusterEssentialsSHA=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' tanzu_versions.json )
 echo "ClusterEssentialsSHA : ${ClusterEssentialsSHA}"
 
 echo "start imgpkg copy"
