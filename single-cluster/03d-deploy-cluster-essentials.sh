@@ -25,10 +25,16 @@ kubectx ${K8S_CONTEXT}
 
 kubectl get pods
 export k8s_check=$?
-clear
+
+cd $HOME/tanzu-cluster-essentials
+if [ ! -e install.sh ]; then
+    echo "tanzu clusteressntials cli not present. download and uncompress tanzu-cluster-essentials-linux-amd64-<version>.tgz"
+    exit 1
+fi
+
 if [ $k8s_check -eq 0 ]; then
     echo "Installing Cluster Essentials on ${K8S_CONTEXT}."
-    INSTALL_BUNDLE=${MY-REGISTRY}/${ClusterEssentialsSHA} \
+    INSTALL_BUNDLE=${MY-REGISTRY}/${MY_REGISTRY_BUNDLE_PROJECT}/${ClusterEssentialsSHA} \
     IMGPKG_REGISTRY_HOSTNAME=${MY-REGISTRY} \
     IMGPKG_REGISTRY_USERNAME=${MY-REGISTRY-USER} \
     IMGPKG_REGISTRY_PASSWORD=${MY-REGISTRY-PASSWORD} \

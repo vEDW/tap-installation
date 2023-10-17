@@ -21,13 +21,14 @@ echo " ClusterEssentialsVersion : ${ClusterEssentialsVersion}"
 ClusterEssentialsSHA=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' tanzu_versions.json)
 echo "ClusterEssentialsSHA : ${ClusterEssentialsSHA}"
 
-cd $HOME/tanzu-cluster-essentials
+#cd $HOME/tanzu-cluster-essentials
 
-IMGPKG_REGISTRY_HOSTNAME=${MY_REGISTRY} \
-IMGPKG_REGISTRY_USERNAME=${MY_REGISTRY_USER} \
-IMGPKG_REGISTRY_PASSWORD=${MY_REGISTRY_PASSWORD} \
+IMGPKG_REGISTRY_HOSTNAME=${MY_REGISTRY} 
+IMGPKG_REGISTRY_USERNAME=${MY_REGISTRY_USER} 
+IMGPKG_REGISTRY_PASSWORD=${MY_REGISTRY_PASSWORD} 
+
 imgpkg copy \
---tar cluster-essentials-bundle-${ClusterEssentialsVersion}.tar \
---to-repo ${MY_REGISTRY}/cluster-essentials-bundle \
+--tar $HOME/tanzu-cluster-essentials/cluster-essentials-bundle-${ClusterEssentialsVersion}.tar \
+--to-repo ${MY_REGISTRY}/${MY_REGISTRY_BUNDLE_PROJECT}/${MY_REGISTRY_BUNDLE_REPO} \
 --include-non-distributable-layers \
 --registry-ca-cert-path ${MY_REGISTRY_CA_PATH}

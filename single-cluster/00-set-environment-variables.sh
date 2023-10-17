@@ -18,6 +18,10 @@ export MY_REGISTRY_CA_PATH=<Private registry cacrt file>
 # Name of repository where you want to store TAP installation files
 export MY_REGISTRY_INSTALL_REPO=tap-install
 
+export MY_REGISTRY_BUNDLE_PROJECT=cluster-essentials-bundle
+export MY_REGISTRY_BUNDLE_REPO=cluster-essentials-bundle
+
+
 # Set k8s cluster context
 #
 export K8S_CONTEXT=cluster-01

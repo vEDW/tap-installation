@@ -1,3 +1,4 @@
+#!/bin/bash
 # 02-instal-tanzu-cli.sh
 #
 # Download Tanzu CLI from Tanzu Network at https://network.tanzu.vmware.com/
