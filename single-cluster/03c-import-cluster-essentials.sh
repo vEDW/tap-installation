@@ -28,4 +28,4 @@ imgpkg copy \
 --tar cluster-essentials-bundle-${ClusterEssentialsVersion}.tar \
 --to-repo ${MY_REGISTRY}/cluster-essentials-bundle \
 --include-non-distributable-layers \
---registry-ca-cert-path ${MY_REGISTRY_CA_PATHcat }
+--registry-ca-cert-path ${MY_REGISTRY_CA_PATH}
