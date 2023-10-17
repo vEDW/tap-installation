@@ -28,7 +28,7 @@ then
   IMGPKG_REGISTRY_PASSWORD=${TANZU_NET_PASSWORD} \
   imgpkg copy \
     -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} \
-    --to-tar tap-${${TAP_VERSION}}.tar \
+    --to-tar tap-${TAP_VERSION}.tar \
     --include-non-distributable-layers
 else 
   echo "one or more versions variable is empty"
