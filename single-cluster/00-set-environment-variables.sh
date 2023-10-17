@@ -13,9 +13,14 @@ export TANZU_NET_PASSWORD=<Tanzu Network Password>
 export MY_REGISTRY=<Private registry URL - e.g. registry.azurecr.io>
 export MY_REGISTRY_USER=<Private registry login>
 export MY_REGISTRY_PASSWORD=<Private registry password>
+export MY_REGISTRY_CA_PATH=<Private registry cacrt file>
 
 # Name of repository where you want to store TAP installation files
 export MY_REGISTRY_INSTALL_REPO=tap-install
+
+# Set k8s cluster context
+#
+export K8S_CONTEXT=cluster-01
 
 # Set iterate & developer namespace-names
 #

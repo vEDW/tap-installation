@@ -19,3 +19,4 @@ fi
 
 IFS= read -rd '' output < <(cat $CACRTFILE)
 output=$output yq e '.shared.ca_cert_data = strenv(output)' tap-values.yaml > tmpfile && mv tmpfile tap-values.yaml
+cp $CACRTFILE ./local-ca.crt

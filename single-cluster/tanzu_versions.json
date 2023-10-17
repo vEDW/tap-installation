@@ -18,6 +18,5 @@
             "cluster-essentials-bundle": "1.6.2",
             "tanzu-cli": "1.0.0"
         }
-
     ]
 }

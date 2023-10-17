@@ -1,5 +1,5 @@
 #Tanzu Network Files
 single-cluster/tanzu-cluster-essentials*.tgz
 single-cluster/tanzu-framework*.tar
-*viktorious*
 *DS_Store*
+*.cluster
