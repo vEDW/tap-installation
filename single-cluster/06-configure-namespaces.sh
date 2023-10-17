@@ -1,3 +1,4 @@
+#!/bin/bash
 # 08-configure-namespaces.sh
 #
 # This scripts create an iterate and production namespace on your Kubernetes cluster
@@ -20,6 +21,6 @@ kubectl apply -f tap-namespaces-roles-accounts.yaml -n $PRODUCTION_NAMESPACE
 # By default Tekton will pull test images from dockerhub. If you're using another registry for this, access to Dockerhub is not required. 
 # The Dockerhub account is required for solves rate-limiting issues: https://docs.docker.com/docker-hub/download-rate-limit/
 #
-kubectl create secret docker-registry dockerhub-credentials --docker-server=https://index.docker.io/v1/ --docker-username=$DOCKERHUB_USER --docker-password=$DOCKERHUB_PASSWORD --docker-email=$DOCKERHUB_EMAIL -n $ITERATE_NAMESPACE
-kubectl create secret docker-registry dockerhub-credentials --docker-server=https://index.docker.io/v1/ --docker-username=$DOCKERHUB_USER --docker-password=$DOCKERHUB_PASSWORD --docker-email=$DOCKERHUB_EMAIL -n $PRODUCTION_NAMESPACE
+#kubectl create secret docker-registry dockerhub-credentials --docker-server=https://index.docker.io/v1/ --docker-username=$DOCKERHUB_USER --docker-password=$DOCKERHUB_PASSWORD --docker-email=$DOCKERHUB_EMAIL -n $ITERATE_NAMESPACE
+#kubectl create secret docker-registry dockerhub-credentials --docker-server=https://index.docker.io/v1/ --docker-username=$DOCKERHUB_USER --docker-password=$DOCKERHUB_PASSWORD --docker-email=$DOCKERHUB_EMAIL -n $PRODUCTION_NAMESPACE
 

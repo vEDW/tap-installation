@@ -1,3 +1,4 @@
+#!/bin/bash
 # 05-add-repo-to-cluster.sh
 #
 # This scripts defines the repository to pull the images from the private registry and install them to the cluster.

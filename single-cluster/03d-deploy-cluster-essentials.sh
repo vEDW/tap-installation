@@ -45,3 +45,14 @@ else
     echo "problem getting response from ${K8S_CONTEXT}"
     echo "check your k8s context and cluster"
 fi
+
+openssl s_client -showcerts -connect ${MY_REGISTRY}:443 </dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > ${MY_REGISTRY}.pem
+
+cat ${MY_REGISTRY_CA_PATH} > harbor.certs
+cat ${MY_REGISTRY}.pem >> harbor.certs
+
+kubectl create secret generic kapp-controller-config \
+    --namespace kapp-controller \
+    --from-file caCerts=harbor.certs
+
+kubectl delete -n kapp-controller pod $(kubectl get po -n kapp-controller | grep kapp- | awk '{print $1}' ) 
