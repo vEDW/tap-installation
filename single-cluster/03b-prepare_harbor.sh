@@ -8,7 +8,8 @@ source 00-set-environment-variables.sh
 REGISTRY_CA_PATH=${MY_REGISTRY_CA_PATH}
 HARBOR_USERNAME=${MY_REGISTRY_USER}
 HARBOR_PASSWORD=${MY_REGISTRY_PASSWORD}
-
+HARBOR_URL=${MY_REGISTRY}
+HARBOR_TAP_REPO=${MY_REGISTRY_INSTALL_REPO}
 
 echo "start importing files...."
 cp $REGISTRY_CA_PATH /etc/ssl/certs/tap-ca.crt
