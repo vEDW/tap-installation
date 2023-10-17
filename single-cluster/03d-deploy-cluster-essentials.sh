@@ -34,7 +34,7 @@ fi
 
 if [ $k8s_check -eq 0 ]; then
     echo "Installing Cluster Essentials on ${K8S_CONTEXT}."
-    export INSTALL_BUNDLE=${MY-REGISTRY}/${MY_REGISTRY_BUNDLE_PROJECT}/${ClusterEssentialsSHA}
+    export INSTALL_BUNDLE=${MY_REGISTRY}/${MY_REGISTRY_BUNDLE_PROJECT}/${ClusterEssentialsSHA}
     export INSTALL_REGISTRY_HOSTNAME=${MY_REGISTRY}
     export INSTALL_REGISTRY_USERNAME=${MY_REGISTRY_USER}
     export INSTALL_REGISTRY_PASSWORD=${MY_REGISTRY_PASSWORD}
