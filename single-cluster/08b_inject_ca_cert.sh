@@ -9,5 +9,9 @@ if [[ ! -e $CACRTFILE ]]; then
 fi
 
 IFS= read -rd '' output < <(cat $CACRTFILE)
-output=$output yq e '.shared.ca_cert_data = strenv(output)' tap-values.yaml > tmpfile && mv tmpfile tap-values.yaml
+yq e 'del(.shared.ca_cert_data)' tap-values.yaml > tmpfile && mv tmpfile tap-values.yaml
+output=$output yq e '.shared.ca_cert_data |= strenv(output)' tap-values.yaml > tmpfile && mv tmpfile tap-values.yaml
+output=$output yq e '.appliveview_connector.backend.caCertData |= strenv(output)' tap-values.yaml > tmpfile && mv tmpfile tap-values.yaml
+
 yq e '.shared.ca_cert_data' tap-values.yaml > ./certs-chain.crt
+yq e tap-values.yaml
