@@ -20,4 +20,4 @@ IMGPKG_REGISTRY_USERNAME=${MY_REGISTRY_USER}
 IMGPKG_REGISTRY_PASSWORD=${MY_REGISTRY_PASSWORD} 
 
 imgpkg copy --tar $DOWNLOADDIR/tbs-full-deps.tar \
---to-repo=${MY_REGISTRY}/${MY_REGISTRY_BUNDLE_PROJECT}/tbs-full-deps --concurrency 10 --registry-ca-cert-path ${MY_REGISTRY_CA_PATH}
+--to-repo=${MY_REGISTRY}/${MY_REGISTRY_INSTALL_REPO}/tbs-full-deps --concurrency 10 --registry-ca-cert-path ${MY_REGISTRY_CA_PATH}
