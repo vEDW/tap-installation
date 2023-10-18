@@ -5,14 +5,14 @@
             "cluster-essentials-sha": "cluster-essentials-bundle@sha256:0378d8592f368b28495153871c497143035747b22f398642220eb0cae596b09d",
             "cluster-essentials-bundle": "1.4.5",
             "tanzu-cli": "1.0.0",
-            "tbs_version": "1.9"
+            "tbs_version": "1.9.11"
         },
         {
             "tap-version": "1.4.10",
             "cluster-essentials-sha": "cluster-essentials-bundle@sha256:0378d8592f368b28495153871c497143035747b22f398642220eb0cae596b09d",
             "cluster-essentials-bundle": "1.4.5",
             "tanzu-cli": "1.0.0",
-            "tbs_version": "1.9"
+            "tbs_version": "1.9.11"
         },
         {
             "tap-version": "1.6.2",
