@@ -63,19 +63,13 @@ appliveview_connector:
       -----END CERTIFICATE-----
 
 tap_gui:
+  tls:
+    namespace: cert-manager
+    secretName: tap-gui  
+  service_type: ClusterIP # If the shared.ingress_domain is set as above, this must be set to ClusterIP.
   app_config:
-    kubernetes:
-      serviceLocatorMethod:
-        type: multiTenant
-      clusterLocatorMethods:
-        - type: config
-          clusters:
-            - url: https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}
-              name: host
-              authProvider: serviceAccount
-              serviceAccountToken: ${KUBERNETES_SERVICE_ACCOUNT_TOKEN}
-              skipTLSVerify: false
-              caData: B64_ENCODED_CA
+    organization:
+      name: "Your organization name"
     catalog:
       locations:
         - type: url
