@@ -87,11 +87,8 @@ fi
 # pivnet login 
 pivnet login --api-token=$APIREFRESHTOKEN
 
-
 #get list of versions and remove single quotes
 echo "Connecting to VMware Tanzu Network and retrieving available products"
-echo
-echo "Select desired product or CTRL-C to quit"
 echo
 
 PRODUCT=tanzu-sql-postgres
