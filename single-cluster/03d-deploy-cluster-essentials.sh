@@ -26,7 +26,7 @@ kubectx ${K8S_CONTEXT}
 kubectl get pods
 export k8s_check=$?
 
-cd $HOME/tanzu-cluster-essentials
+cd $DOWNLOADDIR
 if [ ! -e install.sh ]; then
     echo "tanzu clusteressntials cli not present. download and uncompress tanzu-cluster-essentials-linux-amd64-<version>.tgz"
     exit 1
@@ -51,8 +51,6 @@ openssl s_client -showcerts -connect ${MY_REGISTRY}:443 </dev/null |  sed -ne '/
 cat ${MY_REGISTRY_CA_PATH} > harbor.certs
 cat ${MY_REGISTRY}.pem >> harbor.certs
 
-kubectl create secret generic kapp-controller-config \
-    --namespace kapp-controller \
-    --from-file caCerts=harbor.certs
+
 
 kubectl delete -n kapp-controller pod $(kubectl get po -n kapp-controller | grep kapp- | awk '{print $1}' ) 

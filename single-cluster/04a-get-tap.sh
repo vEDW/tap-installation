@@ -15,13 +15,13 @@
 
 source 00-set-environment-variables.sh  
 
-if [[ ! -e $HOME/tanzu-cluster-essentials ]]; then
-  mkdir $HOME/tanzu-cluster-essentials
+if [[ ! -e $DOWNLOADDIR ]]; then
+  mkdir $DOWNLOADDIR
 fi
 
 if [[ "${TAP_VERSION}" != "" ]];
 then
-  cd $HOME/tanzu-cluster-essentials
+  cd $DOWNLOADDIR
   echo "start imgpkg copy"
   IMGPKG_REGISTRY_HOSTNAME=registry.tanzu.vmware.com \
   IMGPKG_REGISTRY_USERNAME=${TANZU_NET_USER} \

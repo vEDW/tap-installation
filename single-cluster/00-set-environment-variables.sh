@@ -5,22 +5,23 @@
 
 # Tanzunet loging credentials
 #
-export TANZU_NET_USER=<Tanzu Network Email Address>
-export TANZU_NET_PASSWORD=<Tanzu Network Password>
+export TANZU_NET_USER="Tanzu Network Email Address"
+export TANZU_NET_PASSWORD="Tanzu Network Password"
+export APIREFRESHTOKEN="tanzu network refresh token"
+export DOWNLOADDIR=$HOME/download
 
 # Private registry details, used for TAP installation and storing container images
 #
-export MY_REGISTRY=<Private registry URL - e.g. registry.azurecr.io>
-export MY_REGISTRY_USER=<Private registry login>
-export MY_REGISTRY_PASSWORD=<Private registry password>
-export MY_REGISTRY_CA_PATH=<Private registry cacrt file>
+export MY_REGISTRY="Private registry URL - e.g. registry.azurecr.io"
+export MY_REGISTRY_USER="Private registry login"
+export MY_REGISTRY_PASSWORD="Private registry password"
+export MY_REGISTRY_CA_PATH="Private registry cacrt file"
 
 # Name of repository where you want to store TAP installation files
 export MY_REGISTRY_INSTALL_REPO=tap-install
 
 export MY_REGISTRY_BUNDLE_PROJECT=cluster-essentials-bundle
 export MY_REGISTRY_BUNDLE_REPO=cluster-essentials-bundle
-
 
 # Set k8s cluster context
 #
@@ -33,10 +34,10 @@ export PRODUCTION_NAMESPACE=tap-production
 
 # Set postgresql DB parameters. Database is used for persistence in TAP
 #
-export POSTGRESNAMESPACE=<kubernetes namespace to install postgresql to>
-export POSTGRESPASSWORD=<password for the postgres admin user>
-export POSTGRESUSERNAME=<username for another user>
-export POSTGRESUSERPASSWORD=<password for another user>
+export POSTGRESNAMESPACE="kubernetes namespace to install postgresql to"
+export POSTGRESPASSWORD="password for the postgres admin user"
+export POSTGRESUSERNAME="username for another user"
+export POSTGRESUSERPASSWORD="password for another user"
 
 # --------------------- Only configure this part if required ---------------------
 #
@@ -45,10 +46,10 @@ export POSTGRESUSERPASSWORD=<password for another user>
 # By default Tekton (used for testing) will pull test images from dockerhub. If you're using another registry for this, access to Dockerhub is not required.
 # The Dockerhub account is required for solving rate-limiting issues: https://docs.docker.com/docker-hub/download-rate-limit/ (if applicable)
 #
-export $DOCKERHUB_USER=<Dockerhub Username>
-export $DOCKERHUB_PASSWORD=<Dockerhub Password>
-export $DOCKERHUB_EMAIL=<Dockerhub email-address linked to the username>
-
+#export $DOCKERHUB_USER="Dockerhub Username"
+#export $DOCKERHUB_PASSWORD="Dockerhub Password"
+#export $DOCKERHUB_EMAIL="Dockerhub email-address linked to the username"
+#
 # --------------------- Version specific TAP installation parameters below here ---------------------
 #
 # Either 1.3.0, 1.3.1, 1.3.2, 1.3.3, 1.3.4, 1.4.0 or 1.5.0
@@ -56,6 +57,8 @@ export $DOCKERHUB_EMAIL=<Dockerhub email-address linked to the username>
 # Parameters for TAP 1.4 are configured
 #
 export TAP_VERSION=1.4.9
+export TBS_VERSION=1.11.5                                                                              #! the version of tanzu-build-service
+
 
 # Tanzu CLI TAR file - you have to download this file from https://network.tanzu.vmware.com/
 # 1.3.x: tanzu-framework-darwin-amd64.tar

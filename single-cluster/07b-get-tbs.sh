@@ -15,19 +15,13 @@
 
 source 00-set-environment-variables.sh  
 
-if [[ ! -e $HOME/tanzu-cluster-essentials ]]; then
-  mkdir $HOME/tanzu-cluster-essentials
+if [[ ! -e $DOWNLOADDIR ]]; then
+  mkdir $DOWNLOADDIR
 fi
 
-ClusterEssentialsVersion=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"' tanzu_versions.json)
-echo " ClusterEssentialsVersion : ${ClusterEssentialsVersion}"
-
-ClusterEssentialsSHA=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' tanzu_versions.json)
-echo "ClusterEssentialsSHA : ${ClusterEssentialsSHA}"
-
-if [[ "${ClusterEssentialsSHA}" != "" ]] || [[ "${ClusterEssentialsSHA}" != "" ]];
+if [[ "${TBS_VERSION}" != "" ]] || [[ "${ClusterEssentialsSHA}" != "" ]];
 then
-  cd $HOME/tanzu-cluster-essentials
+  cd $DOWNLOADDIR
   echo "start imgpkg copy"
   IMGPKG_REGISTRY_HOSTNAME=registry.tanzu.vmware.com \
   IMGPKG_REGISTRY_USERNAME=${TANZU_NET_USER} \
@@ -36,6 +30,12 @@ then
     -b registry.tanzu.vmware.com/tanzu-cluster-essentials/${ClusterEssentialsSHA} \
     --to-tar cluster-essentials-bundle-${ClusterEssentialsVersion}.tar \
     --include-non-distributable-layers
+
+    echo "Downloading TBS Full Dependencies"
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:$TBS_VERSION \
+      --to-tar=tbs-full-deps.tar --concurrency 30
+    
+
 else 
   echo "one or more versions variable is empty"
 fi

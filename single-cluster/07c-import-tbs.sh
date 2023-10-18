@@ -21,6 +21,8 @@ echo " ClusterEssentialsVersion : ${ClusterEssentialsVersion}"
 ClusterEssentialsSHA=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' tanzu_versions.json)
 echo "ClusterEssentialsSHA : ${ClusterEssentialsSHA}"
 
+#cd $HOME/tanzu-cluster-essentials
+
 IMGPKG_REGISTRY_HOSTNAME=${MY_REGISTRY} 
 IMGPKG_REGISTRY_USERNAME=${MY_REGISTRY_USER} 
 IMGPKG_REGISTRY_PASSWORD=${MY_REGISTRY_PASSWORD} 

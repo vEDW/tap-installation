@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # 03-deploy-cluster-essentials.sh
 #
 # This script is only required for non-TKGm clusters (AKS, EKS, GKE, etc.). For vSphere /w Tanzu v7 it's also required to 
@@ -13,7 +12,12 @@
 # For Linux:
 # - Change download file to tanzu-cluster-essentials-linux-amd64-1.3.0.tgz
 # 
+
 source 00-set-environment-variables.sh  
+
+if [[ ! -e $DOWNLOADDIR ]]; then
+  mkdir $DOWNLOADDIR
+fi
 
 ClusterEssentialsVersion=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-bundle"' tanzu_versions.json)
 echo " ClusterEssentialsVersion : ${ClusterEssentialsVersion}"
@@ -21,12 +25,17 @@ echo " ClusterEssentialsVersion : ${ClusterEssentialsVersion}"
 ClusterEssentialsSHA=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."cluster-essentials-sha"' tanzu_versions.json)
 echo "ClusterEssentialsSHA : ${ClusterEssentialsSHA}"
 
-IMGPKG_REGISTRY_HOSTNAME=${MY_REGISTRY} 
-IMGPKG_REGISTRY_USERNAME=${MY_REGISTRY_USER} 
-IMGPKG_REGISTRY_PASSWORD=${MY_REGISTRY_PASSWORD} 
-
-imgpkg copy \
---tar $DOWNLOADDIR/cluster-essentials-bundle-${ClusterEssentialsVersion}.tar \
---to-repo ${MY_REGISTRY}/${MY_REGISTRY_BUNDLE_PROJECT}/${MY_REGISTRY_BUNDLE_REPO} \
---include-non-distributable-layers \
---registry-ca-cert-path ${MY_REGISTRY_CA_PATH}
+if [[ "${ClusterEssentialsSHA}" != "" ]] || [[ "${ClusterEssentialsSHA}" != "" ]];
+then
+  cd $DOWNLOADDIR
+  echo "start imgpkg copy"
+  IMGPKG_REGISTRY_HOSTNAME=registry.tanzu.vmware.com \
+  IMGPKG_REGISTRY_USERNAME=${TANZU_NET_USER} \
+  IMGPKG_REGISTRY_PASSWORD=${TANZU_NET_PASSWORD} \
+  imgpkg copy \
+    -b registry.tanzu.vmware.com/tanzu-cluster-essentials/${ClusterEssentialsSHA} \
+    --to-tar cluster-essentials-bundle-${ClusterEssentialsVersion}.tar \
+    --include-non-distributable-layers
+else 
+  echo "one or more versions variable is empty"
+fi

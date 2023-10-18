@@ -3,3 +3,5 @@ single-cluster/tanzu-cluster-essentials*.tgz
 single-cluster/tanzu-framework*.tar
 *DS_Store*
 *.cluster
+tap-values.yaml
+single-cluster/tap-values.yaml

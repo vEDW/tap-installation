@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # 08-install-tap.sh
 #
 # This scripts install TAP version $TAP_VERSION (defined in 00-set-environment-variables.sh).
@@ -9,4 +11,6 @@
 
 # Install TAP
 #
+source ./00-set-environment-variables.sh  
+
 tanzu package install tap -p tap.tanzu.vmware.com -v $TAP_VERSION --values-file tap-values.yaml -n tap-install
