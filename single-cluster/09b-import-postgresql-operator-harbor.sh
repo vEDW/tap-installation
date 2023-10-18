@@ -9,12 +9,15 @@ HARBOR_PASSWORD=${MY_REGISTRY_PASSWORD}
 HARBOR_URL=${MY_REGISTRY}
 HARBOR_TAP_REPO=${MY_REGISTRY_INSTALL_REPO}
 
+echo "create harbor repo"
 curl -u "${HARBOR_USERNAME}:${HARBOR_PASSWORD}" -X POST -H "content-type: application/json" "https://${HARBOR_URL}/api/v2.0/projects" -d "{\"project_name\": \"postgresql\", \"public\": true, \"storage_limit\": -1 }" -k
 
+echo "uncompressing"
 cd $HOME/download
 tar -zxf postgres-for-kubernetes*.gz
 cd $(ls -d */ |grep post)
 
+echo "docker loading images"
 docker load -i ./images/postgres-instance
 docker load -i ./images/postgres-operator
 docker images "postgres-*"
@@ -22,7 +25,7 @@ docker images "postgres-*"
 echo "Login in to registry '$MY_REGISTRY'"
 docker login $MY_REGISTRY --username $MY_REGISTRY_USER --password $MY_REGISTRY_PASSWORD
 
-
+echo "pushing images to harbor"
 INSTANCE_IMAGE_NAME="${MY_REGISTRY}/postgresql/postgres-instance:$(cat ./images/postgres-instance-tag)"
 docker tag $(cat ./images/postgres-instance-id) ${INSTANCE_IMAGE_NAME}
 docker push ${INSTANCE_IMAGE_NAME}
@@ -31,6 +34,7 @@ OPERATOR_IMAGE_NAME="${MY_REGISTRY}/postgresql/postgres-operator:$(cat ./images/
 docker tag $(cat ./images/postgres-operator-id) ${OPERATOR_IMAGE_NAME}
 docker push ${OPERATOR_IMAGE_NAME}
 
+echo "editing operator yaml versions"
 params=$OPERATOR_IMAGE_NAME yq e '.operatorImage = strenv(params)' operator/values.yaml > tmpfile && mv tmpfile operator/postgre-values.yaml
 params=$INSTANCE_IMAGE_NAME yq e '.postgresImage = strenv(params)' operator/postgre-values.yaml > tmpfile && mv tmpfile operator/postgre-values.yaml
 yq e  operator/postgre-values.yaml
