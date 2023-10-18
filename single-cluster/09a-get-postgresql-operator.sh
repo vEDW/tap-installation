@@ -94,15 +94,7 @@ echo
 echo "Select desired product or CTRL-C to quit"
 echo
 
-select PRODUCT in $(get_products); do 
-    echo
-    echo "you selected product : ${PRODUCT}"
-    echo
-    break
-done
-
 PRODUCT=tanzu-sql-postgres
-210
 echo
 echo "Select desired version or CTRL-C to quit"
 echo
