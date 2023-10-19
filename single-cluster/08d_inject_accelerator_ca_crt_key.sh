@@ -8,7 +8,7 @@ if [[ ! -e $CACRTFILE ]]; then
     exit 1
 fi
 
-CAKEYFILE=$1
+CAKEYFILE=$2
 if [[ ! -e $CAKEYFILE ]]; then
     echo "$CAKEYFILE not present. stopping script"
     exit 1
