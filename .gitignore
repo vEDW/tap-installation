@@ -5,3 +5,4 @@ single-cluster/tanzu-framework*.tar
 *.cluster
 tap-values.yaml
 single-cluster/tap-values.yaml
+single-cluster/tap-values.yaml

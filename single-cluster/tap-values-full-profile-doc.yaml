@@ -13,9 +13,9 @@ profile: full
 ceip_policy_disclosed: true
 buildservice:
   kp_default_repository: "SERVER/KP-DEFAULT-REPO/tbs-full-deps"
-#  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
-#    name: "KP-DEFAULT-REPO-SECRET"
-#    namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
+  kp_default_repository_secret: # Takes the value from the shared section by default, but can be overridden by setting a different value.
+    name: "registry-credentials"
+    namespace: "tap-install"
   exclude_dependencies: true
 
 supply_chain: basic
@@ -40,6 +40,11 @@ ootb_supply_chain_basic:
 #         secret_name: "MAVEN-CREDENTIALS"
 
 accelerator:
+  server:
+    tls:
+      enabled: true
+      key: 
+      crt: 
   ingress:
     include: true
     enable_tls: false

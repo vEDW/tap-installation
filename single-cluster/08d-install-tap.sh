@@ -13,4 +13,6 @@
 #
 source ./00-set-environment-variables.sh  
 
+tanzu secret registry add registry-credentials --username $MY_REGISTRY --password $MY_REGISTRY_USER --server $MY_REGISTRY_PASSWORD --namespace default --export-to-all-namespaces
+
 tanzu package install tap -p tap.tanzu.vmware.com -v $TAP_VERSION --values-file tap-values.yaml -n tap-install
