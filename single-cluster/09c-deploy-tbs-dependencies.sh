@@ -15,6 +15,9 @@
 # 
 source 00-set-environment-variables.sh  
 
+TBS_VERSION=$(jq -r '."tap-versions"[] | select (."tap-version" == "'${TAP_VERSION}'") | ."tbs_version"' tanzu_versions.json)
+echo " TBS_Version : ${TBS_VERSION}"
+
 tanzu package repository add tbs-full-deps-repository \
   --url ${MY_REGISTRY}/${MY_REGISTRY_INSTALL_REPO}/tbs-full-deps:${TBS_VERSION} \
   --namespace tap-install
