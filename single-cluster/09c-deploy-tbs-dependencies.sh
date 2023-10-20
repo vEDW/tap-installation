@@ -15,4 +15,8 @@
 # 
 source 00-set-environment-variables.sh  
 
+tanzu package repository add tbs-full-deps-repository \
+  --url ${MY_REGISTRY}/${MY_REGISTRY_INSTALL_REPO}/tbs-full-deps:${TBS_VERSION} \
+  --namespace tap-install
+
 tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v "${TBS_VERSION}" -n tap-install
