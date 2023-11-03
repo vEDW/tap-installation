@@ -7,6 +7,8 @@
 # Use 'kubectl config set-context <kubernetes context>' to switch to correct cluster prior to running this script.
 #
 
+source 00-set-environment-variables.sh
+
 kubectl create ns tap-install
 
 # Create secret for private registry access
